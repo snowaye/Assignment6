@@ -13,8 +13,8 @@
         android:height="300dp"/>
 
     <corners
-        android:topRightRadius="300dp"
+        android:topRightRadius="0dp"
         android:topLeftRadius="0dp"
-        android:bottomLeftRadius="300dp"
+        android:bottomLeftRadius="0dp"
         android:bottomRightRadius="300dp"/>
 </shape>

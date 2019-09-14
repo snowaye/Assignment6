@@ -5,6 +5,10 @@
     <color name="colorAccent">#1E88E5</color>
     <color name="bottomNavIconColor">#565364</color>
     <color name="bottomNavSeclectedIconColor">#5E6DE2</color>
+    <color name="colorMainBackground">#FAFAFA</color>
 
     <color name="textColorWhite">#FFFFFF</color>
+    <color name="ratingBarNormalColor">#f4fcbe</color>
+    <color name="ratingBarActivitatedColor">#edcd10</color>
+
 </resources>

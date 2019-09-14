@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.padc.batch9.assignment6.R;
+import com.padc.batch9.assignment6.data.model.RestaurantModel;
+import com.padc.batch9.assignment6.data.vo.RestaurantVo;
+import com.padc.batch9.assignment6.delegate.RestaurantDataDelegate;
 import com.padc.batch9.assignment6.fragment.CameraFragment;
 import com.padc.batch9.assignment6.fragment.CategoryFragment;
 import com.padc.batch9.assignment6.fragment.NotificationFragment;
@@ -18,10 +21,14 @@ import com.padc.batch9.assignment6.fragment.ProfileFragment;
 import com.padc.batch9.assignment6.fragment.RestaurantFragment;
 import com.padc.batch9.assignment6.util.DialogUtil;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements RestaurantDataDelegate {
 
     FragmentManager fragmentManager;
     BottomNavigationView bottomNavigationView;
+    List<RestaurantVo> restaurantVos;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        restaurantModel.getResturants(new RestaurantModel.GetRestaurantsFromDataLayerDelegate() {
+            @Override
+            public void onSuccess(List<RestaurantVo> list) {
+                restaurantVos = new ArrayList<>(list);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                showIdefiniteSnakBar(errorMessage);
+            }
+        });
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView = findViewById(R.id.nav_view);
         DialogUtil.setStatusBarColor(this, R.color.colorPrimary);
@@ -78,5 +96,10 @@ public class MainActivity extends AppCompatActivity {
     private void loadFirstFragment() {
         RestaurantFragment fragment = new RestaurantFragment();
         loadFragment(fragment);
+    }
+
+    @Override
+    public List<RestaurantVo> getRestaurantDataFromHost() {
+        return restaurantVos;
     }
 }

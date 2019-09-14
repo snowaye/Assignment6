@@ -1,4 +1,4 @@
-package com.padc.batch9.assignment6;
+package com.padc.batch9.assignment6.view.viewholder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

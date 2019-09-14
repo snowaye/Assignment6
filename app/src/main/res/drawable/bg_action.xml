@@ -4,7 +4,7 @@
     android:shape="oval">
 
     <solid
-        android:color="#565364"/>
+        android:color="@color/bottomNavSeclectedIconColor"/>
 
     <size
         android:width="120dp"

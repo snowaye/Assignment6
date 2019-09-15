@@ -24,64 +24,33 @@ import com.padc.batch9.assignment6.util.DialogUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements RestaurantDataDelegate {
+public class MainActivity extends BaseActivity implements RestaurantDataDelegate, BottomNavigationView.OnNavigationItemReselectedListener {
 
     FragmentManager fragmentManager;
     BottomNavigationView bottomNavigationView;
     List<RestaurantVo> restaurantVos;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
-            switch (item.getItemId()) {
-                case R.id.nav_restaurant:
-                    fragment = new RestaurantFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.nav_category:
-                    fragment = new CategoryFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.nav_camera:
-                    fragment = new CameraFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.nav_notification:
-                    fragment = new NotificationFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.nav_profile:
-                    fragment = new ProfileFragment();
-                    loadFragment(fragment);
-                    return true;
-            }
-            return false;
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fragmentManager = getSupportFragmentManager();
+        bottomNavigationView = findViewById(R.id.nav_view);
+        DialogUtil.setStatusBarColor(this, R.color.colorPrimary);
         restaurantModel.getResturants(new RestaurantModel.GetRestaurantsFromDataLayerDelegate() {
             @Override
             public void onSuccess(List<RestaurantVo> list) {
                 restaurantVos = new ArrayList<>(list);
+                loadFirstFragment();
             }
-
             @Override
             public void onFailure(String errorMessage) {
                 showIdefiniteSnakBar(errorMessage);
             }
         });
-        fragmentManager = getSupportFragmentManager();
-        bottomNavigationView = findViewById(R.id.nav_view);
-        DialogUtil.setStatusBarColor(this, R.color.colorPrimary);
-        loadFirstFragment();
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        bottomNavigationView.setOnNavigationItemReselectedListener(this);
     }
 
     public void loadFragment(Fragment fragment) {
@@ -101,5 +70,32 @@ public class MainActivity extends BaseActivity implements RestaurantDataDelegate
     @Override
     public List<RestaurantVo> getRestaurantDataFromHost() {
         return restaurantVos;
+    }
+
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem item) {
+        Fragment fragment;
+        switch (item.getItemId()) {
+            case R.id.nav_restaurant:
+                fragment = new RestaurantFragment();
+                loadFragment(fragment);
+                break;
+            case R.id.nav_category:
+                fragment = new CategoryFragment();
+                loadFragment(fragment);
+                break;
+            case R.id.nav_camera:
+                fragment = new CameraFragment();
+                loadFragment(fragment);
+               break;
+            case R.id.nav_notification:
+                fragment = new NotificationFragment();
+                loadFragment(fragment);
+                break;
+            case R.id.nav_profile:
+                fragment = new ProfileFragment();
+                loadFragment(fragment);
+               break;
+        }
     }
 }

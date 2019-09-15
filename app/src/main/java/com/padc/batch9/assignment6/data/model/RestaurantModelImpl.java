@@ -66,4 +66,10 @@ public class RestaurantModelImpl extends BaseModel implements RestaurantModel {
         restaurantVo = mDatabase.restaurantDao().getRestaurantById(id);
         return restaurantVo;
     }
+
+    @Override
+    public List<RestaurantVo> getAllRestaurants() {
+        List<RestaurantVo> restaurantVos = mDatabase.restaurantDao().getAllRestaurants();
+        return restaurantVos;
+    }
 }

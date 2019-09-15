@@ -9,4 +9,6 @@
     <string name="label_tab_detail">Detail</string>
     <string name="label_tab_menu">Menu</string>
     <string name="label_tab_review">Review</string>
+    <string name="label_no_category">No Category</string>
+    <string name="label_no_data">No Data</string>
 </resources>

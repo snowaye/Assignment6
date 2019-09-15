@@ -11,4 +11,7 @@
     <color name="ratingBarNormalColor">#f4fcbe</color>
     <color name="ratingBarActivitatedColor">#edcd10</color>
 
+    <color name="tabSelectedTextColor">#FFFFFF</color>
+    <color name="tabTextColor">#b2b2b2</color>
+
 </resources>

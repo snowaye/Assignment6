@@ -14,4 +14,6 @@ public interface RestaurantModel {
     }
 
     RestaurantVo getRestaurantVoById(int id);
+
+    List<RestaurantVo> getAllRestaurants();
 }

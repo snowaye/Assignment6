@@ -32,9 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/textColorWhite"
-            app:tabSelectedTextColor="@color/textColorWhite"
-            app:tabTextColor="@color/ratingBarNormalColor"
+            app:tabIndicatorColor="@color/tabTextColor"
+            app:tabSelectedTextColor="@color/tabSelectedTextColor"
+            app:tabTextColor="@color/tabTextColor"
             app:tabIndicatorHeight="2dp"
             app:tabIndicatorGravity="top"
             app:tabMode="fixed" />
